@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.Servicios.ServicioView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bottomTab="clr-namespace:BikercityApp.Views.Base;assembly=BikercityApp"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    Title="Servicios"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    <ContentPage.Content>
+        <StackLayout
+            BackgroundColor="#f2f2f2"
+            Spacing="0"
+            VerticalOptions="FillAndExpand">
+            <ScrollView VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="ServicioList" BindableLayout.ItemsSource="{Binding ServicioList}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Margin="15"
+                                Padding="0"
+                                BackgroundColor="White"
+                                CornerRadius="10"
+                                HasShadow="False"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="StartAndExpand">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.GoToDetalleServicioViewCommand, Source={x:Reference ServicioList}}" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                                <Grid
+                                    Padding="0,0,0,4"
+                                    ColumnSpacing="0"
+                                    HeightRequest="235"
+                                    RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Image
+                                        Aspect="Fill"
+                                        HorizontalOptions="FillAndExpand"
+                                        Source="{Binding foto}"
+                                        VerticalOptions="FillAndExpand" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Margin="8,8,8,0"
+                                        FontAttributes="Bold"
+                                        FontSize="17"
+                                        HorizontalOptions="Start"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="1"
+                                        Text="{Binding titulo}"
+                                        TextColor="#555555"
+                                        VerticalOptions="End" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Margin="8,2,8,8"
+                                        FontSize="13"
+                                        HorizontalOptions="Start"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="2"
+                                        Text="{Binding descripcion}"
+                                        TextColor="#888888"
+                                        VerticalOptions="End" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+            <bottomTab:BottomTabTemplate />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

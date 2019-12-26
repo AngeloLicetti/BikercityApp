@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "827288052056",
+    "firebase_url": "https://bikercityaplication.firebaseio.com",
+    "project_id": "bikercityaplication",
+    "storage_bucket": "bikercityaplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827288052056:android:783097e280888f25",
+        "android_client_info": {
+          "package_name": "com.companyname.BikercityApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827288052056-0qojkf37ucdom99jvq4rqcnhc8h1st40.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChngTbNRm3YlZ6jRZznfzLI3DHtUTfTKw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827288052056-0qojkf37ucdom99jvq4rqcnhc8h1st40.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

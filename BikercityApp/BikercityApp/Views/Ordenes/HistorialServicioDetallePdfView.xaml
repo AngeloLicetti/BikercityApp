@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.Ordenes.HistorialServicioDetallePdfView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:BikercityApp.Controls;assembly=BikercityApp"
+    xmlns:templates="clr-namespace:BikercityApp.Views.Templates;assembly=BikercityApp"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    Title="PDF Cotización"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <controls:CustomLocalPDFView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                HorizontalOptions="FillAndExpand"
+                Uri="{Binding PathFile}"
+                VerticalOptions="FillAndExpand" />
+            <StackLayout
+                Margin="0,0,0,20"
+                AbsoluteLayout.LayoutBounds="0.5,1,-1,-1"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Vertical">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="#4a4c4f"
+                        CornerRadius="25"
+                        HasShadow="True"
+                        HorizontalOptions="Center">
+                        <StackLayout
+                            Padding="10,5"
+                            Orientation="Horizontal"
+                            Spacing="2"
+                            VerticalOptions="CenterAndExpand">
+                            <Label
+                                Margin="20,10"
+                                FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                FontSize="18"
+                                HorizontalOptions="Center"
+                                Text="arrow-alt-circle-down"
+                                TextColor="White"
+                                VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding DescargarCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <BoxView
+                                Margin="0,-5"
+                                WidthRequest="1"
+                                Color="#868687" />
+                            <Label
+                                Margin="20,10"
+                                FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                FontSize="18"
+                                HorizontalOptions="Center"
+                                Text="share-alt"
+                                TextColor="White"
+                                VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CompartirCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+            <templates:InformationModalTemplate IsVisible="{Binding IsModalVisible}">
+                <templates:InformationModalTemplate.HeaderTemplate>
+                    <ContentView>
+                        <StackLayout>
+                            <Label
+                                FontSize="15"
+                                HorizontalOptions="Center"
+                                Text="{Binding TextoInformacion}" />
+                        </StackLayout>
+                    </ContentView>
+                </templates:InformationModalTemplate.HeaderTemplate>
+            </templates:InformationModalTemplate>
+            <templates:BusyIndicatorTemplate IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

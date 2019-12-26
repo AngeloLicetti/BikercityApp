@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.Catalogo.CarritoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:bottomTab="clr-namespace:BikercityApp.Views.Base;assembly=BikercityApp"
+    xmlns:templates="clr-namespace:BikercityApp.Views.Templates;assembly=BikercityApp"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Spacing="0">
+                <StackLayout VerticalOptions="FillAndExpand">
+                    <Frame
+                        Padding="15"
+                        CornerRadius="0"
+                        HasShadow="True"
+                        VerticalOptions="Start">
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                HorizontalOptions="FillAndExpand"
+                                Text="{Binding CarritoLista.Count, StringFormat='Mi Carrito({0})'}"
+                                TextColor="Black" />
+                        </StackLayout>
+                    </Frame>
+
+                    <ListView
+                        HasUnevenRows="True"
+                        ItemsSource="{Binding CarritoLista}"
+                        SeparatorVisibility="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame
+                                        Margin="0,4"
+                                        CornerRadius="0"
+                                        HasShadow="True"
+                                        HeightRequest="130">
+                                        <Grid ColumnSpacing="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="1.45*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Image Grid.RowSpan="4" Source="{Binding fotoPrincipal}" />
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Margin="15,0"
+                                                FontSize="13"
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="1"
+                                                Text="{Binding titulo}" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Margin="15,0"
+                                                FontAttributes="Bold"
+                                                FontSize="16"
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="1"
+                                                Text="{Binding SubTotal, StringFormat='S/ {0:0.00}'}"
+                                                TextColor="Black" />
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="1"
+                                                Margin="15,0"
+                                                FontSize="12"
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="1"
+                                                Text="{Binding tipoProducto}"
+                                                VerticalOptions="EndAndExpand" />
+                                            <Grid
+                                                Grid.Row="3"
+                                                Grid.Column="1"
+                                                Margin="15"
+                                                ColumnSpacing="20"
+                                                HorizontalOptions="FillAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label
+                                                    Grid.Column="0"
+                                                    FontAttributes="Bold"
+                                                    FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                                    FontSize="Large"
+                                                    Text="minus-circle">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding DisminuirCarritoCommand}" CommandParameter="{Binding .}" />
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                                <Label
+                                                    Grid.Column="1"
+                                                    FontSize="Medium"
+                                                    Text="{Binding Cantidad}" />
+                                                <!--<ActivityIndicator
+                                                    Grid.Column="1"
+                                                    IsRunning="{Binding IsUpdating}"
+                                                    IsVisible="{Binding IsUpdating}" />-->
+                                                <Label
+                                                    Grid.Column="2"
+                                                    FontAttributes="Bold"
+                                                    FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                                    FontSize="Large"
+                                                    Text="plus-circle">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding AumentarCarritoCommand}" CommandParameter="{Binding .}" />
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                                <Label
+                                                    Grid.Column="3"
+                                                    FontFamily="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular"
+                                                    FontSize="22"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    Text="trash-alt"
+                                                    VerticalOptions="Center">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding EliminarCarritoCommand}" CommandParameter="{Binding .}" />
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Grid>
+
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Frame
+                        Padding="10"
+                        BorderColor="WhiteSmoke"
+                        CornerRadius="0"
+                        HasShadow="True">
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                FontSize="16"
+                                HorizontalOptions="Fill"
+                                Text="Total:"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                HorizontalOptions="FillAndExpand"
+                                Text="{Binding TotalPrecio, StringFormat='S/ {0:0.00}'}"
+                                VerticalOptions="Center" />
+                            <Button
+                                BackgroundColor="Red"
+                                Command="{Binding ComprarCommand}"
+                                IsVisible="{Binding ValidateButton}"
+                                FontSize="11"
+                                HeightRequest="35"
+                                Text="COMPRAR"
+                                TextColor="White" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <bottomTab:BottomTabTemplate />
+            </StackLayout>
+            <templates:BusyIndicatorTemplate IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+
+

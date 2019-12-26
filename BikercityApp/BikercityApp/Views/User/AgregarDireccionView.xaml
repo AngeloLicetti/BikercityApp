@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.User.AgregarDireccionView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    xmlns:controls="clr-namespace:BikercityApp.Controls;assembly=BikercityApp"
+    Title="Agregar Direccion"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    NavigationPage.HasNavigationBar="True">
+    <ContentPage.Content>
+        <StackLayout>
+            <controls:CustomRoundedEntry
+                HorizontalOptions="StartAndExpand"
+                Placeholder="Dirección:                                                                         "
+                Text="{Binding Direccion}"
+                VerticalOptions="StartAndExpand" />
+            <controls:CustomRoundedEntry
+                HorizontalOptions="StartAndExpand"
+                Placeholder="Lote:                                                                         "
+                Text="{Binding Lote}"
+                VerticalOptions="StartAndExpand" />
+            <controls:CustomRoundedEntry
+                HorizontalOptions="StartAndExpand"
+                Placeholder="Urbanización:                                                                         "
+                Text="{Binding Urbanizacion}"
+                VerticalOptions="StartAndExpand" />
+            <controls:CustomRoundedEntry
+                HorizontalOptions="StartAndExpand"
+                Placeholder="Referencia:                                                                         "
+                Text="{Binding Referencia}"
+                VerticalOptions="StartAndExpand" />
+            <Grid ColumnSpacing="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="0.15*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    FontSize="16"
+                    HorizontalOptions="Fill"
+                    Text="Establecer como predeterminada"
+                    VerticalOptions="StartAndExpand" />
+                <Switch
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="CenterAndExpand"
+                    IsToggled="{Binding IsActive}"
+                    OnColor="Blue" />
+            </Grid>
+            <controls:CustomRoundedEntry
+                HorizontalOptions="StartAndExpand"
+                Placeholder="Distrito:                                                                         "
+                Text="{Binding Distrito}"
+                VerticalOptions="StartAndExpand" />
+            <controls:CustomRoundedEntry
+                HorizontalOptions="StartAndExpand"
+                Placeholder="Email:                                                                         "
+                Text="{Binding Email}"
+                VerticalOptions="StartAndExpand" />
+            <controls:CustomRoundedEntry
+                HorizontalOptions="StartAndExpand"
+                Placeholder="Número telefónico:                                                                         "
+                Text="{Binding NumeroTelefonico}"
+                VerticalOptions="StartAndExpand" />
+            <Button
+                BackgroundColor="Blue"
+                Command="{Binding AgregarDireccionCommand}"
+                FontSize="12"
+                HeightRequest="55"
+                Text="Agregar dirección"
+                TextColor="White" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frame
+    x:Class="BikercityApp.Views.Base.BottomTabTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Padding="0"
+    BackgroundColor="#ffffff"
+    CornerRadius="0"
+    HasShadow="True">
+    <FlexLayout
+        Direction="Row"
+        HorizontalOptions="FillAndExpand"
+        JustifyContent="SpaceAround"
+        VerticalOptions="Start">
+
+        <StackLayout
+            Margin="-20,-10,-20,-17"
+            Padding="20"
+            HorizontalOptions="StartAndExpand"
+            Orientation="Vertical"
+            Spacing="6">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToCatalogoViewCommand}" />
+            </StackLayout.GestureRecognizers>
+            <Label
+                FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                FontSize="20"
+                HorizontalOptions="Center"
+                Text="motorcycle"
+                TextColor="{Binding HomeColor}"
+                VerticalOptions="Center" />
+            <Label
+                Margin="0"
+                FontSize="10"
+                HorizontalOptions="Center"
+                Text="INICIO"
+                TextColor="{Binding HomeColor}" />
+        </StackLayout>
+
+        <StackLayout
+            Margin="-20,-10,-20,-17"
+            Padding="20"
+            HorizontalOptions="StartAndExpand"
+            Orientation="Vertical"
+            Spacing="6">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToServicioViewCommand}" />
+            </StackLayout.GestureRecognizers>
+            <Label
+                FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                FontSize="20"
+                HorizontalOptions="Center"
+                Text="tools"
+                TextColor="{Binding ServiceColor}"
+                VerticalOptions="Center" />
+            <Label
+                Margin="0"
+                FontSize="10"
+                HorizontalOptions="Center"
+                Text="SERVICIOS"
+                TextColor="{Binding ServiceColor}" />
+        </StackLayout>
+
+        <StackLayout
+            Margin="-20,-10,-20,-17"
+            Padding="20"
+            HorizontalOptions="CenterAndExpand"
+            Orientation="Vertical"
+            Spacing="6">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToCarritoViewCommand}" />
+            </StackLayout.GestureRecognizers>
+            <Label
+                FontFamily="Font Awesome 5 Brands-Regular-400.otf#Font Awesome 5 Brands Regular"
+                FontSize="20"
+                HorizontalOptions="Center"
+                Text="opencart"
+                TextColor="{Binding CartColor}"
+                VerticalOptions="Center" />
+            <Label
+                FontSize="10"
+                HorizontalOptions="Center"
+                Text="CARRITO"
+                TextColor="{Binding CartColor}" />
+        </StackLayout>
+
+        <StackLayout
+            Margin="-20,-10,-20,-17"
+            Padding="20"
+            HorizontalOptions="EndAndExpand"
+            Orientation="Vertical"
+            Spacing="6">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToPerfilViewCommand}" />
+            </StackLayout.GestureRecognizers>
+            <Label
+                FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                FontSize="20"
+                HorizontalOptions="Center"
+                Text="street-view"
+                TextColor="{Binding ProfileColor}"
+                VerticalOptions="Center" />
+            <Label
+                FontSize="10"
+                HorizontalOptions="Center"
+                Text="CUENTA"
+                TextColor="{Binding ProfileColor}" />
+        </StackLayout>
+
+    </FlexLayout>
+</Frame>

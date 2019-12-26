@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.User.AgregarTarjetaView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    Title="Agregar Tarjeta"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    NavigationPage.HasNavigationBar="True">
+
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <Grid
+                Margin="15,15"
+                Padding="15,15"
+                RowSpacing="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Image
+                    Grid.ColumnSpan="2"
+                    Aspect="Fill"
+                    HeightRequest="180"
+                    Source="https://www.visa.ca/content/VISA/canada/englishlanguagemaster/en_CA/home/run-your-business/small-business-solutions/visa-business-card/_jcr_content/par/cardstack/cardStackColumn1/image.img.png/1522891088169.png" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Numero de Tarjeta" />
+                <Entry
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{Binding NumeroTarjeta}"
+                    VerticalOptions="StartAndExpand" />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Text="Nombres" />
+                <Entry
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{Binding Nombre}"
+                    VerticalOptions="StartAndExpand" />
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Text="Mes" />
+                <Entry
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{Binding Mes}"
+                    VerticalOptions="StartAndExpand" />
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Text="Año" />
+                <Entry
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{Binding Año}"
+                    VerticalOptions="StartAndExpand" />
+                <Label
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Text="Codigo de Seguridad" />
+                <Entry
+                    Grid.Row="8"
+                    Grid.Column="0"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{Binding Cvv}"
+                    VerticalOptions="StartAndExpand" />
+                <Button
+                    Grid.Row="9"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,15,0,0"
+                    BackgroundColor="LightGreen"
+                    HorizontalOptions="Center"
+                    Command="{Binding AgregarTarjetaCommand}"
+                    Text="Agregar Tarjeta"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </Grid>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

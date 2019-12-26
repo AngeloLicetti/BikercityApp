@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.User.GestionarDireccionesView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    Title="Gestionar Direcciones"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    NavigationPage.HasNavigationBar="True">
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="#f2f2f2" VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <Frame Padding="15">
+                    <Label
+                        FontSize="13"
+                        Text="Agregar nueva dirección"
+                        TextColor="#A4D3F2" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AgregarDireccionCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame
+                    Margin="0,4"
+                    Padding="15"
+                    CornerRadius="0"
+                    HasShadow="True"
+                    VerticalOptions="FillAndExpand">
+                    <StackLayout x:Name="DireccionesList" BindableLayout.ItemsSource="{Binding ListaDirecciones}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnSpacing="5" VerticalOptions="Start">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="1" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Margin="15,0"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="1"
+                                        Text="{Binding NombresApellidos}"
+                                        TextColor="Black" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Margin="15,0"
+                                        FontSize="13"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="1"
+                                        Text="{Binding DireccionConcatenada}" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        Margin="15,0"
+                                        FontSize="13"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="1"
+                                        Text="{Binding referencia}" />
+                                    <Label
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        Margin="15,0"
+                                        FontSize="13"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="1"
+                                        Text="{Binding numeroTelefonico}"
+                                        VerticalOptions="End" />
+
+                                    <Label
+                                        Grid.Row="4"
+                                        Grid.Column="0"
+                                        Margin="15,0"
+                                        FontSize="13"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="1"
+                                        Text="{Binding email}" />
+
+                                    <!--  Aqui va el radio button  -->
+                                    <!--<BoxView
+                                        Grid.Row="1"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        BackgroundColor="Transparent"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand" />-->
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        FontFamily="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular"
+                                        FontSize="20"
+                                        HorizontalOptions="Center"
+                                        Text="trash-alt"
+                                        TextColor="Black"
+                                        VerticalOptions="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.EliminarDireccionCommand, Source={x:Reference DireccionesList}}" CommandParameter="{Binding .}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        FontFamily="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular"
+                                        FontSize="20"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding SelectedIcon}"
+                                        TextColor="{Binding SelectedIconColor}"
+                                        VerticalOptions="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.DeterminarDireccionCommand, Source={x:Reference DireccionesList}}" CommandParameter="{Binding .}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label
+                                        Grid.Row="4"
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        HorizontalOptions="End"
+                                        Text="Editar"
+                                        TextColor="#82B4D6">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding EditarDireccionCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
+                                    <BoxView
+                                        Grid.Row="5"
+                                        Grid.ColumnSpan="2"
+                                        Margin="-15,0"
+                                        BackgroundColor="Gray"
+                                        HeightRequest="1"
+                                        HorizontalOptions="FillAndExpand"
+                                        Opacity="0.3"
+                                        VerticalOptions="Start" />
+                                </Grid>
+
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

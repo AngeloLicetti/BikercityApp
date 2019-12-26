@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.Catalogo.ValoracionesView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+    xmlns:templates="clr-namespace:BikercityApp.Views.Templates;assembly=BikercityApp"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    Title="Valoraciones"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    NavigationPage.HasNavigationBar="True">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout BackgroundColor="##f2f2f2" Spacing="0">
+                    <Frame Padding="15">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout>
+                                <StackLayout
+                                    HorizontalOptions="Center"
+                                    Orientation="Horizontal"
+                                    Spacing="1">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="24"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding CalificacionTotal, StringFormat='{0:0.0}'}"
+                                        TextColor="Black"
+                                        VerticalOptions="Start" />
+                                    <Label
+                                        FontSize="18"
+                                        HorizontalOptions="StartAndExpand"
+                                        Text="/5"
+                                        VerticalOptions="End" />
+                                </StackLayout>
+                                <rating:SfRating
+                                    x:Name="ratingTotal"
+                                    HorizontalOptions="CenterAndExpand"
+                                    ItemSize="14"
+                                    Precision="Half"
+                                    VerticalOptions="Center"
+                                    Value="{Binding CalificacionTotal}" />
+                            </StackLayout>
+                            <BoxView
+                                BackgroundColor="Gray"
+                                Opacity="0.2"
+                                VerticalOptions="FillAndExpand"
+                                WidthRequest="1" />
+                            <StackLayout Margin="15,0,0,0" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <rating:SfRating
+                                        ItemSize="10"
+                                        Precision="Half"
+                                        VerticalOptions="Center"
+                                        Value="5">
+                                        <rating:SfRating.RatingSettings>
+                                            <rating:SfRatingSettings
+                                                RatedFill="Gray"
+                                                RatedStrokeWidth="0"
+                                                UnRatedFill="#f2f2f2"
+                                                UnRatedStrokeWidth="0" />
+                                        </rating:SfRating.RatingSettings>
+                                    </rating:SfRating>
+                                    <BoxView
+                                        BackgroundColor="Gray"
+                                        HeightRequest="0.5"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="12"
+                                        HorizontalOptions="End"
+                                        Text="{Binding CincoEstrellas}"
+                                        TextColor="Black" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <rating:SfRating
+                                        ItemSize="10"
+                                        Precision="Half"
+                                        VerticalOptions="Center"
+                                        Value="4">
+                                        <rating:SfRating.RatingSettings>
+                                            <rating:SfRatingSettings
+                                                RatedFill="Gray"
+                                                RatedStrokeWidth="0"
+                                                UnRatedFill="#f2f2f2"
+                                                UnRatedStrokeWidth="0" />
+                                        </rating:SfRating.RatingSettings>
+                                    </rating:SfRating>
+                                    <BoxView
+                                        BackgroundColor="Gray"
+                                        HeightRequest="0.5"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="12"
+                                        HorizontalOptions="End"
+                                        Text="{Binding CuatroEstrellas}"
+                                        TextColor="Black" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <rating:SfRating
+                                        ItemSize="10"
+                                        Precision="Half"
+                                        VerticalOptions="Center"
+                                        Value="3">
+                                        <rating:SfRating.RatingSettings>
+                                            <rating:SfRatingSettings
+                                                RatedFill="Gray"
+                                                RatedStrokeWidth="0"
+                                                UnRatedFill="#f2f2f2"
+                                                UnRatedStrokeWidth="0" />
+                                        </rating:SfRating.RatingSettings>
+                                    </rating:SfRating>
+                                    <BoxView
+                                        BackgroundColor="Gray"
+                                        HeightRequest="0.5"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="12"
+                                        HorizontalOptions="End"
+                                        Text="{Binding TresEstrellas}"
+                                        TextColor="Black" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <rating:SfRating
+                                        ItemSize="10"
+                                        Precision="Half"
+                                        VerticalOptions="Center"
+                                        Value="2">
+                                        <rating:SfRating.RatingSettings>
+                                            <rating:SfRatingSettings
+                                                RatedFill="Gray"
+                                                RatedStrokeWidth="0"
+                                                UnRatedFill="#f2f2f2"
+                                                UnRatedStrokeWidth="0" />
+                                        </rating:SfRating.RatingSettings>
+                                    </rating:SfRating>
+                                    <BoxView
+                                        BackgroundColor="Gray"
+                                        HeightRequest="0.5"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="12"
+                                        HorizontalOptions="End"
+                                        Text="{Binding DosEstrellas}"
+                                        TextColor="Black" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <rating:SfRating
+                                        ItemSize="10"
+                                        Precision="Half"
+                                        VerticalOptions="Center"
+                                        Value="1">
+                                        <rating:SfRating.RatingSettings>
+                                            <rating:SfRatingSettings
+                                                RatedFill="Gray"
+                                                RatedStrokeWidth="0"
+                                                UnRatedFill="#f2f2f2"
+                                                UnRatedStrokeWidth="0" />
+                                        </rating:SfRating.RatingSettings>
+                                    </rating:SfRating>
+                                    <BoxView
+                                        BackgroundColor="Gray"
+                                        HeightRequest="0.5"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="12"
+                                        HorizontalOptions="End"
+                                        Text="{Binding UnaEstrella}"
+                                        TextColor="Black" />
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    <FlexLayout
+                        Grid.Row="1"
+                        Margin="5,8,5,5"
+                        Direction="Row"
+                        HorizontalOptions="FillAndExpand"
+                        JustifyContent="SpaceEvenly"
+                        VerticalOptions="Start">
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OrdenarTodoCommand}" />
+                            </StackLayout.GestureRecognizers>
+                            <Label
+                                FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                FontSize="18"
+                                HorizontalOptions="Center"
+                                Text="list-ul"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontSize="Micro"
+                                HorizontalOptions="Center"
+                                Text="Todo"
+                                TextColor="Black" />
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OrdernarMenorMayorCommand}" />
+                            </StackLayout.GestureRecognizers>
+                            <Label
+                                FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                FontSize="18"
+                                HorizontalOptions="Center"
+                                Text="sort-amount-up"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontSize="Micro"
+                                HorizontalOptions="Center"
+                                Text="Valoracion"
+                                TextColor="Black" />
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OrdernarMayorMenorCommand}" />
+                            </StackLayout.GestureRecognizers>
+                            <Label
+                                FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                FontSize="18"
+                                HorizontalOptions="Center"
+                                Text="sort-amount-down"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontSize="Micro"
+                                HorizontalOptions="Center"
+                                Text="Valoracion"
+                                TextColor="Black" />
+                        </StackLayout>
+                    </FlexLayout>
+                    <Frame
+                        Margin="0,4,0,0"
+                        Padding="15"
+                        VerticalOptions="FillAndExpand">
+                        <StackLayout Spacing="0">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Text="{Binding ResenasList.Count, StringFormat='{0} Valoraciones'}"
+                                TextColor="Black" />
+                            <BoxView
+                                Margin="0,4"
+                                BackgroundColor="WhiteSmoke"
+                                HeightRequest="1"
+                                HorizontalOptions="FillAndExpand" />
+                            <StackLayout
+                                Grid.Row="3"
+                                Margin="10"
+                                BindableLayout.ItemsSource="{Binding ResenasList}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label
+                                                    FontSize="12"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Text="{Binding nombreC}" />
+                                                <Label
+                                                    FontSize="12"
+                                                    HorizontalOptions="End"
+                                                    Text="{Binding fechaRegistroFormat}" />
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <rating:SfRating
+                                                    ItemSize="8"
+                                                    Precision="Exact"
+                                                    VerticalOptions="Center"
+                                                    Value="{Binding calificacion}" />
+                                                <Label FontSize="10" Text="-" />
+                                                <Label FontSize="12" Text="{Binding calificacion}" />
+                                            </StackLayout>
+
+                                            <Label
+                                                FontSize="14"
+                                                Text="{Binding descripcion}"
+                                                TextColor="Black" />
+                                            <BoxView
+                                                Margin="0,4"
+                                                BackgroundColor="WhiteSmoke"
+                                                HeightRequest="1"
+                                                HorizontalOptions="FillAndExpand" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+            <templates:BusyIndicatorTemplate IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

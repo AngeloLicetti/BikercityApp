@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BikercityApp.Views.User.PerfilUserView"
+                 xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+             xmlns:templates="clr-namespace:BikercityApp.Views.Templates;assembly=BikercityApp"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="#f2f2f2"
+                Spacing="0">
+                <ScrollView VerticalOptions="FillAndExpand">
+                    <StackLayout Spacing="4">
+                        <Frame BackgroundColor="White" VerticalOptions="Start">
+                            <StackLayout>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Large"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="PERFIL"
+                                    TextColor="Black"/>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    FormattedText="{Binding datosCliente.nombre, StringFormat='Nombre: {0}'}"
+                                    TextColor="#999999" />
+
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    FormattedText="{Binding datosCliente.paterno, StringFormat='Apellido Paterno: {0}'}"
+                                    TextColor="#999999" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    FormattedText="{Binding datosCliente.materno, StringFormat='Apellido Materno: {0}'}"
+                                    TextColor="#999999" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    FormattedText="{Binding datosCliente.direccion, StringFormat='Direccion: {0}'}"
+                                    TextColor="#999999" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    FormattedText="{Binding datosCliente.distrito, StringFormat='Distrito: {0}'}"
+                                    TextColor="#999999" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    FormattedText="{Binding datosCliente.telefono, StringFormat='Telefono: {0}'}"
+                                    TextColor="#999999" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    FormattedText="{Binding datosCliente.email, StringFormat='Email: {0}'}"
+                                    TextColor="#999999" />                               
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+                
+            </StackLayout>
+             <templates:BusyIndicatorTemplate IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

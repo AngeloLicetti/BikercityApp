@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.User.LoginView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+            <Image
+                Aspect="AspectFill"
+                HeightRequest="66"
+                HorizontalOptions="CenterAndExpand"
+                Source="images"
+                WidthRequest="66" />
+            <Label
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="Iniciar Sesión" />
+            <Frame>
+                <StackLayout>
+                    <Entry Placeholder="Usuario" Text="{Binding correoCliente}" />
+                    <Entry IsPassword="True" Placeholder="Contraseña" Text="{Binding contraseñaCliente}" />
+                </StackLayout>
+            </Frame>
+            <Button Command="{Binding IniciarSesionCommand}" Text="Inicia Sesión" />
+            <Button Command="{Binding GoToRegistrarUsuarioViewCommand}" Text="Regístrate" />
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

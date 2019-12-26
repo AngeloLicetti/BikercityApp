@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.Servicios.SolicitarServicioView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:BikercityApp.Controls;assembly=BikercityApp"
+    xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
+    xmlns:templates="clr-namespace:BikercityApp.Views.Templates;assembly=BikercityApp"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    Title="Solicitar Servicio"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    NavigationPage.HasNavigationBar="True">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Spacing="0"
+                VerticalOptions="Start">
+                <Frame Margin="5" Padding="15">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <controls:CustomRoundedEntry
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Nombre"
+                                Text="{Binding NombreContacto}" />
+                            <Entry
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Telefono"
+                                Text="{Binding Telefono}" />
+                        </StackLayout>
+                        <Entry Placeholder="Correo" Text="{Binding Correo}" />
+                        <Entry Placeholder="Direccion" Text="{Binding Direccion}" />
+                        <Entry Placeholder="Comentario" Text="{Binding Comentario}" />
+
+                        <Button
+                            BackgroundColor="#5cb85c"
+                            Command="{Binding SolicitarServicioCommand}"
+                            Text="Solicitar"
+                            TextColor="White" />
+                    </StackLayout>
+
+                </Frame>
+            </StackLayout>
+            <templates:InformationModalTemplate IsVisible="{Binding IsModalVisible}">
+                <templates:InformationModalTemplate.HeaderTemplate>
+                    <ContentView>
+                        <StackLayout>
+                            <Label
+                                FontSize="15"
+                                HorizontalOptions="Center"
+                                Text="{Binding TextoInformacion}" />
+                        </StackLayout>
+                    </ContentView>
+                </templates:InformationModalTemplate.HeaderTemplate>
+            </templates:InformationModalTemplate>
+            <templates:BusyIndicatorTemplate IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

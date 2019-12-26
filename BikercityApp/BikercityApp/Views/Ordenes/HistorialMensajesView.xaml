@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.Ordenes.HistorialMensajesView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    Title="Historial de Mensajes"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <Frame
+                Padding="15"
+                CornerRadius="0"
+                HasShadow="True"
+                VerticalOptions="Start">
+                <StackLayout Orientation="Horizontal" Spacing="35">
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                        FontSize="18"
+                        Text="arrow-left"
+                        TextColor="Black"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateBackCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Mis mensajes"
+                        TextColor="#393939"
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </Frame>
+            <ScrollView VerticalOptions="FillAndExpand">
+                <StackLayout
+                    BackgroundColor="#f2f2f2"
+                    BindableLayout.ItemsSource="{Binding MensajeList}"
+                    VerticalOptions="FillAndExpand">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <Image
+                                    HeightRequest="50"
+                                    IsVisible="{Binding IsUsuario}"
+                                    Source="userIcon"
+                                    WidthRequest="50" />
+                                <Frame
+                                    Padding="18,12"
+                                    BorderColor="Transparent"
+                                    CornerRadius="10"
+                                    HasShadow="True"
+                                    HorizontalOptions="FillAndExpand">
+                                    <StackLayout>
+                                        <Label FontSize="13" Text="{Binding Mensaje}" />
+                                        <Label
+                                            FontSize="12"
+                                            HorizontalOptions="End"
+                                            Text="{Binding FechaFormated}"
+                                            TextColor="#999999" />
+                                    </StackLayout>
+
+                                </Frame>
+                                <Image
+                                    HeightRequest="50"
+                                    IsVisible="{Binding IsCliente}"
+                                    Source="clienteIcon"
+                                    WidthRequest="50" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout
+                IsVisible="{Binding IsSend}"
+                Orientation="Horizontal"
+                Spacing="0"
+                VerticalOptions="End">
+                <Frame Padding="0" HorizontalOptions="FillAndExpand">
+                    <StackLayout Padding="10,0" Orientation="Horizontal">
+                        <Label
+                            FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                            FontSize="18"
+                            Text="signature"
+                            VerticalOptions="Center" />
+                        <Editor
+                            HorizontalOptions="FillAndExpand"
+                            MaxLength="400"
+                            Placeholder="Escribe tu mensaje"
+                            Text="{Binding Mensaje}" />
+                    </StackLayout>
+                </Frame>
+                <Button
+                    Padding="0,0,-5,0"
+                    BackgroundColor="#337ab7"
+                    Command="{Binding SendCommand}"
+                    CornerRadius="0"
+                    HeightRequest="50"
+                    Image="ic_send"
+                    WidthRequest="50" />
+            </StackLayout>  
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

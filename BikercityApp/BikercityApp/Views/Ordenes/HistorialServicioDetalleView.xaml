@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.Ordenes.HistorialServicioDetalleView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:itemTemplates="clr-namespace:BikercityApp.Views.Ordenes.Templates;assembly=BikercityApp"
+    xmlns:templates="clr-namespace:BikercityApp.Views.Templates;assembly=BikercityApp"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    Title="Detalle de Servicio"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    NavigationPage.HasNavigationBar="True">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding GoToMensajeCommand}"
+            Icon="ic_message"
+            Text="Mensajes" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="#f2f2f2"
+                Spacing="0">
+                <ScrollView VerticalOptions="FillAndExpand">
+                    <StackLayout Spacing="4">
+                        <Frame BackgroundColor="White" VerticalOptions="Start">
+                            <StackLayout>
+
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Servicio.tituloServicio}"
+                                    TextColor="#777777" />
+                                <Label
+                                    FontSize="14"
+                                    FormattedText="{Binding Servicio.fechaFormateada, StringFormat='FechaRegistro: {0}'}"
+                                    TextColor="#777777" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    FormattedText="{Binding Servicio.idSolicitudServicio, StringFormat='Número de Servicio: {0}'}"
+                                    TextColor="#999999" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    FormattedText="{Binding Servicio.descripcionEstado, StringFormat='ESTADO ACTUAL: {0}'}"
+                                    TextColor="Green" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    FormattedText="{Binding Servicio.comentario, StringFormat='Descripcion de la Solicitud: {0}'}"
+                                    TextColor="Black" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="15"
+                                    FormattedText="{Binding Servicio.nombrePdf, StringFormat='PDF Cotización (Ver pdf): {0}'}"
+                                    TextColor="Black">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding VerPdfCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </Frame>
+                        <Frame
+                            x:Name="citasList"
+                            Padding="0"
+                            BackgroundColor="White"
+                            VerticalOptions="FillAndExpand">
+                            <StackLayout>
+                                <StackLayout BindableLayout.ItemsSource="{Binding DetalleServicioList}" Spacing="-1">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame
+                                                Padding="0"
+                                                BackgroundColor="White"
+                                                BorderColor="LightGray"
+                                                CornerRadius="0"
+                                                HasShadow="False"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="Start">
+                                                <Grid
+                                                    Padding="0"
+                                                    ColumnSpacing="0"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    RowSpacing="0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="10" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="1" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="65" />
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="40" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Frame
+                                                        Grid.Row="1"
+                                                        Grid.ColumnSpan="2"
+                                                        Padding="5"
+                                                        BackgroundColor="#f2f2f3"
+                                                        CornerRadius="28"
+                                                        HasShadow="False"
+                                                        HeightRequest="15"
+                                                        HorizontalOptions="Start"
+                                                        TranslationX="-15"
+                                                        VerticalOptions="FillAndExpand">
+                                                        <Grid>
+                                                            <Label
+                                                                Margin="90,0,10,0"
+                                                                FontSize="12"
+                                                                Text="{Binding FechaFormated}"
+                                                                TextColor="#888888" />
+                                                        </Grid>
+                                                    </Frame>
+                                                    <Frame
+                                                        Grid.Row="1"
+                                                        Padding="0"
+                                                        BackgroundColor="Orange"
+                                                        CornerRadius="100"
+                                                        HasShadow="False"
+                                                        HeightRequest="8"
+                                                        HorizontalOptions="Center"
+                                                        IsVisible="{Binding IsSameDate}"
+                                                        VerticalOptions="Center"
+                                                        WidthRequest="8" />
+                                                    <BoxView
+                                                        Grid.RowSpan="4"
+                                                        BackgroundColor="Orange"
+                                                        HorizontalOptions="Center"
+                                                        VerticalOptions="FillAndExpand"
+                                                        WidthRequest="2" />
+                                                    <Frame
+                                                        Grid.Row="2"
+                                                        Padding="8"
+                                                        BackgroundColor="Orange"
+                                                        CornerRadius="60"
+                                                        HorizontalOptions="Center"
+                                                        VerticalOptions="Center">
+                                                        <Label
+                                                            FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                                            FontSize="20"
+                                                            HorizontalOptions="CenterAndExpand"
+                                                            Text="{Binding IconEstado}"
+                                                            TextColor="White"
+                                                            VerticalOptions="CenterAndExpand" />
+                                                    </Frame>
+                                                    <StackLayout
+                                                        Grid.Row="2"
+                                                        Grid.Column="1"
+                                                        Margin="15"
+                                                        Spacing="2">
+                                                        <Label
+                                                            FontAttributes="Bold"
+                                                            FontSize="15"
+                                                            Text="{Binding idCita, StringFormat='Cita Nro {0}'}"
+                                                            TextColor="Black" />
+                                                        <Label
+                                                            FontSize="12"
+                                                            Text="{Binding DescripcionHoras, StringFormat='Turno de {0}'}"
+                                                            TextColor="#777777" />
+                                                        <Label
+                                                            FontAttributes="Bold"
+                                                            FontSize="14"
+                                                            Text="{Binding EstadoCita}"
+                                                            TextColor="{Binding ColorEstado}" />
+                                                    </StackLayout>
+                                                    <Label
+                                                        Grid.Row="1"
+                                                        Grid.Column="2"
+                                                        FontFamily="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular"
+                                                        FontSize="20"
+                                                        HorizontalOptions="Center"
+                                                        IsVisible="{Binding IsEditable}"
+                                                        Text="edit"
+                                                        TextColor="Black"
+                                                        VerticalOptions="Center">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding BindingContext.OpenpUpdateModalCommand, Source={x:Reference citasList}}" CommandParameter="{Binding .}" />
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                    <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="2"
+                                                        FontFamily="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular"
+                                                        FontSize="20"
+                                                        HorizontalOptions="Center"
+                                                        IsVisible="{Binding IsCancelable}"
+                                                        Text="times-circle"
+                                                        TextColor="Black"
+                                                        VerticalOptions="Center">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding BindingContext.CancelarCitaCommand, Source={x:Reference citasList}}" CommandParameter="{Binding .}" />
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                    <BoxView
+                                                        Grid.Row="3"
+                                                        Grid.ColumnSpan="3"
+                                                        BackgroundColor="LightGray"
+                                                        HeightRequest="0.1"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Opacity="0.4"
+                                                        VerticalOptions="Start" />
+
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+                <Frame
+                    Padding="4"
+                    BackgroundColor="White"
+                    BorderColor="LightGray"
+                    IsVisible="{Binding IsAgendable}"
+                    VerticalOptions="End">
+                    <StackLayout>
+                        <Button
+                            BackgroundColor="#5cb85c"
+                            Command="{Binding OpenCitaModalCommand}"
+                            HorizontalOptions="Center"
+                            Text="Agendar Cita"
+                            TextColor="White" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <itemTemplates:AgregarCitaTemplate IsVisible="{Binding IsModalCita}" />
+            <templates:BusyIndicatorTemplate IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

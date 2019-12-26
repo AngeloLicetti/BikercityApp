@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.User.PerfilView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bottomTab="clr-namespace:BikercityApp.Views.Base;assembly=BikercityApp"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout VerticalOptions="FillAndExpand">
+                <!--<Label Text="Nombre" />
+                <Label Text="sub" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Compras" />
+                    <Label Text="Servicios" />
+                </StackLayout>
+                <Label Text="Historial Compras" />
+                <Label Text="Historial Servicios" />-->
+                <Label Text="{Binding NombreUsuario}" />
+
+            </StackLayout>
+            <StackLayout
+                Padding="15"
+                IsVisible="{Binding IsLogged, Converter={StaticResource InverseBoolConverter}}"
+                VerticalOptions="FillAndExpand">
+                <Label
+                    HorizontalOptions="Center"
+                    Text="Debe iniciar sesión para entrar al sistema"
+                    VerticalOptions="EndAndExpand" />
+                <Button
+                    BackgroundColor="#2196F3"
+                    Command="{Binding GoToLoginViewCommand}"
+                    Text="Iniciar Sesión"
+                    VerticalOptions="StartAndExpand" />
+                <Button
+                    BackgroundColor="#2196F3"
+                    Command="{Binding GoToRegistrarUsuarioViewCommand}"
+                    Text="Regístrate"
+                    VerticalOptions="StartAndExpand" />
+            </StackLayout>
+            <StackLayout
+                Padding="15"
+                IsVisible="{Binding IsLogged}"
+                VerticalOptions="FillAndExpand">
+                <Button
+                    BackgroundColor="#2196F3"
+                    Command="{Binding CerrarSesionCommand}"
+                    Text="Cerrar Sesión"
+                    VerticalOptions="StartAndExpand" />
+            </StackLayout>
+            <StackLayout
+                Padding="15"
+                IsVisible="{Binding IsLogged}"
+                VerticalOptions="FillAndExpand">
+                <Button
+                    BackgroundColor="#2196F3"
+                    Command="{Binding GoToPerfilUserViewCommand}"
+                    Text="Perfil de Usuario"
+                    VerticalOptions="StartAndExpand" />
+            </StackLayout>
+            <StackLayout
+                Padding="15"
+                IsVisible="{Binding IsLogged}"
+                VerticalOptions="FillAndExpand">
+                <Button
+                    BackgroundColor="#2196F3"
+                    Command="{Binding GoToHistorialCompraViewCommand}"
+                    Text="Historial de Compras"
+                    VerticalOptions="StartAndExpand" />
+            </StackLayout>
+            <StackLayout
+                Padding="15"
+                IsVisible="{Binding IsLogged}"
+                VerticalOptions="FillAndExpand">
+                <Button
+                    BackgroundColor="#2196F3"
+                    Command="{Binding GoToHistorialServicioViewCommand}"
+                    Text="Historial de Servicios"
+                    VerticalOptions="StartAndExpand" />
+            </StackLayout>            
+            <bottomTab:BottomTabTemplate />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

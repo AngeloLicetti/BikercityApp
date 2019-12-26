@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.Ordenes.HistorialCompraView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    Title="Historial de Compras"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    NavigationPage.HasNavigationBar="True">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Start">
+            <ScrollView>
+                <StackLayout
+                    x:Name="OrdenList"
+                    BindableLayout.ItemsSource="{Binding OrdenList}"
+                    Orientation="Vertical"
+                    VerticalOptions="Center">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame
+                                    Margin="0"
+                                    Padding="6"
+                                    BackgroundColor="White"
+                                    CornerRadius="0"
+                                    HasShadow="True">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.GoToDetalleCompraViewCommand
+                           , Source={x:Reference OrdenList} }" CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+                                    <FlexLayout Margin="15,5" Direction="Row" FlowDirection="MatchParent" JustifyContent="SpaceEvenly">
+                                        
+                                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                            <Label Text="Num Orden:" FontSize="Micro" TextColor="DimGray"/>
+                                            <Label Text="{Binding idOrden}" FontSize="Micro" TextColor="Black"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical" HorizontalOptions="End">
+                                            <Label Text="Registrado el" FontSize="Micro" TextColor="DimGray"/>
+                                            <Label Text="{Binding fechaFormateada}" FontSize="Micro" TextColor="Black"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                            <Label Text="Precio" FontSize="Micro" TextColor="DimGray"/>
+                                            <Label Text="{Binding precio, StringFormat='S/ {0:00.00}'}" FontSize="Micro" TextColor="Black"/>
+                                        </StackLayout>
+                                    </FlexLayout>
+                                </Frame>
+
+                            </StackLayout>
+
+
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="BikercityApp.Views.Ordenes.Templates.AgregarCitaTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    AbsoluteLayout.LayoutBounds="0,0,1,1"
+    AbsoluteLayout.LayoutFlags="All">
+    <ContentView.Content>
+        <AbsoluteLayout
+            BackgroundColor="#772F4F4F"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*" />
+                    <ColumnDefinition Width="9.2*" />
+                    <ColumnDefinition Width="0.4*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.4*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1.2*" />
+                </Grid.RowDefinitions>
+                <BoxView
+                    Grid.RowSpan="3"
+                    Grid.ColumnSpan="3"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CloseCitaModalCommand}" />
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <Frame
+                    x:Name="FrameModal"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Padding="0"
+                    BackgroundColor="White"
+                    CornerRadius="15"
+                    HorizontalOptions="FillAndExpand"
+                    OutlineColor="Transparent"
+                    VerticalOptions="FillAndExpand">
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        Spacing="0"
+                        VerticalOptions="FillAndExpand">
+                        <StackLayout x:Name="LayerContent" Padding="15,10,15,10">
+                            <Label
+                                x:Name="Title"
+                                Margin="0,0,0,10"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Agendar Cita" />
+                            <DatePicker
+                                Date="{Binding DateSelected}"
+                                MaximumDate="{Binding MaxDate}"
+                                MinimumDate="{Binding MinDate}" />
+                            <Picker
+                                ItemDisplayBinding="{Binding Descripcion}"
+                                ItemsSource="{Binding HorarioList}"
+                                SelectedItem="{Binding HorarioSelected}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.ColumnSpan="3"
+                            Padding="0,0,15,15"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                            VerticalOptions="EndAndExpand">
+                            <BoxView
+                                Margin="0,15,-15,0"
+                                BackgroundColor="#dddddd"
+                                HeightRequest="1"
+                                HorizontalOptions="FillAndExpand" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    HorizontalOptions="EndAndExpand"
+                                    Text="Agendar"
+                                    TextColor="LightGreen">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding AgendarCitaCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label
+                                    x:Name="ButtonClose"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    HorizontalOptions="End"
+                                    Text="Cerrar"
+                                    TextColor="Red">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CloseCitaModalCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

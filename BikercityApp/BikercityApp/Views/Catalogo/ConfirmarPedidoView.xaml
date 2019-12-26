@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.Catalogo.ConfirmarPedidoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:templates="clr-namespace:BikercityApp.Views.Templates;assembly=BikercityApp"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    Title="Confirmar pedido"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    NavigationPage.HasNavigationBar="True">
+    <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="#f2f2f2">
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="#f2f2f2"
+                Spacing="0">
+                <ScrollView VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Frame BackgroundColor="White">
+                            <StackLayout>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalOptions="Fill"
+                                    Text="Direccion de entrega:"
+                                    VerticalOptions="StartAndExpand" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    HorizontalOptions="Fill"
+                                    Text="{Binding NombresApellidos}"
+                                    VerticalOptions="StartAndExpand" />
+                                <Label
+                                    FontSize="16"
+                                    HorizontalOptions="Fill"
+                                    Text="{Binding Direccion}"
+                                    VerticalOptions="StartAndExpand" />
+                                <Label
+                                    FontSize="16"
+                                    HorizontalOptions="Fill"
+                                    Text="{Binding Email}"
+                                    VerticalOptions="StartAndExpand" />
+                                <Label
+                                    FontSize="16"
+                                    HorizontalOptions="Fill"
+                                    Text="{Binding NumeroTelefonico}"
+                                    VerticalOptions="StartAndExpand" />
+                                <Label
+                                    FontSize="14"
+                                    Text="Agregar nueva dirección"
+                                    TextColor="#A4D3F2">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GestionarDireccionCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </Frame>
+                        <StackLayout>
+                            <Frame>
+                                <StackLayout>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HorizontalOptions="Fill"
+                                        Text="Método de Pago:"
+                                        VerticalOptions="StartAndExpand" />
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        HorizontalOptions="Fill"
+                                        Text="{Binding NumeroTarjetaFormat}"
+                                        VerticalOptions="StartAndExpand" />
+                                    <Label
+                                        FontSize="14"
+                                        Text="Agregar nuevo método de pago"
+                                        TextColor="#A4D3F2">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding GestionarTarjetaCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                        <Frame BackgroundColor="White">
+                            <StackLayout>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalOptions="Fill"
+                                    Text="Comprueba tu pedido:"
+                                    VerticalOptions="StartAndExpand" />
+                                <StackLayout BindableLayout.ItemsSource="{Binding CarritoLista}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame
+                                                Margin="0,4"
+                                                CornerRadius="0"
+                                                HasShadow="True"
+                                                HeightRequest="120">
+                                                <Grid ColumnSpacing="5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="1.45*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Image Grid.RowSpan="4" Source="{Binding fotoPrincipal}" />
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Margin="15,0"
+                                                        FontSize="13"
+                                                        LineBreakMode="TailTruncation"
+                                                        MaxLines="1"
+                                                        Text="{Binding titulo}" />
+                                                    <Label
+                                                        Grid.Row="1"
+                                                        Grid.Column="1"
+                                                        Margin="15,0"
+                                                        FontAttributes="Bold"
+                                                        FontSize="16"
+                                                        LineBreakMode="TailTruncation"
+                                                        MaxLines="1"
+                                                        Text="{Binding SubTotal, StringFormat='S/ {0:0.00}'}"
+                                                        TextColor="Black" />
+                                                    <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="1"
+                                                        Margin="15,0"
+                                                        FontSize="12"
+                                                        LineBreakMode="TailTruncation"
+                                                        MaxLines="1"
+                                                        Text="{Binding tipoProducto}"
+                                                        VerticalOptions="EndAndExpand" />
+                                                    <StackLayout
+                                                        Grid.Row="3"
+                                                        Grid.Column="1"
+                                                        Orientation="Horizontal">
+                                                        <Label
+                                                            Margin="15,0"
+                                                            FontSize="12"
+                                                            LineBreakMode="TailTruncation"
+                                                            MaxLines="1"
+                                                            Text="Cantidad:"
+                                                            VerticalOptions="EndAndExpand" />
+                                                        <Label
+                                                            Margin="15,0"
+                                                            FontSize="12"
+                                                            LineBreakMode="TailTruncation"
+                                                            MaxLines="1"
+                                                            Text="{Binding Cantidad}"
+                                                            VerticalOptions="EndAndExpand" />
+                                                    </StackLayout>
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="White">
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HorizontalOptions="Fill"
+                                        Text="Resumen del pedido:"
+                                        VerticalOptions="StartAndExpand" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                        FontSize="16"
+                                        HorizontalOptions="Fill"
+                                        Text="SubTotal:"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="16"
+                                        HorizontalOptions="FillAndExpand"
+                                        Text="{Binding TotalPrecio, StringFormat='S/ {0:0.00}'}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                        FontSize="16"
+                                        HorizontalOptions="Fill"
+                                        Text="Descuento:"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="16"
+                                        HorizontalOptions="FillAndExpand"
+                                        Text="S/. 00.00"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                        FontSize="16"
+                                        HorizontalOptions="Fill"
+                                        Text="Total:"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HorizontalOptions="FillAndExpand"
+                                        Text="{Binding TotalPrecio, StringFormat='S/ {0:0.00}'}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+                <Frame
+                    Padding="15,10"
+                    CornerRadius="0"
+                    HasShadow="True">
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="StartAndExpand" Spacing="2">
+                            <Label
+                                FontSize="11"
+                                Text="Total"
+                                TextColor="Black" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                HorizontalOptions="Start"
+                                Text="{Binding TotalPrecio, StringFormat='PEN {0:0.00}'}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                        </StackLayout>  
+                        <Button
+                            BackgroundColor="Red"
+                            Command="{Binding ComprarCommand}"
+                            FontSize="11"
+                            HeightRequest="35"
+                            HorizontalOptions="End"
+                            Text="HACER PEDIDO"
+                            TextColor="White" />
+                    </StackLayout>
+
+                </Frame>
+            </StackLayout>
+            <templates:BusyIndicatorTemplate IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

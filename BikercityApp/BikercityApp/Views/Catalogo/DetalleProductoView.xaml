@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.Catalogo.DetalleProductoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+    xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+    xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    Title="DetalleProducto"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#f2f2f2" Spacing="0">
+            <ScrollView VerticalOptions="FillAndExpand">
+                <StackLayout>
+                    <Frame Padding="0">
+                        <StackLayout>
+                            <cv:CarouselViewControl
+                                Grid.Row="0"
+                                HeightRequest="300"
+                                HorizontalOptions="FillAndExpand"
+                                InterPageSpacing="10"
+                                ItemsSource="{Binding DetalleProducto.Fotos}"
+                                Orientation="Horizontal"
+                                VerticalOptions="FillAndExpand">
+                                <cv:CarouselViewControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Image
+                                            Grid.Row="0"
+                                            Aspect="AspectFill"
+                                            HeightRequest="300"
+                                            Source="{Binding Foto}" />
+                                    </DataTemplate>
+                                </cv:CarouselViewControl.ItemTemplate>
+                            </cv:CarouselViewControl>
+                            <StackLayout Padding="15,0,15,10">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="20"
+                                    Text="{Binding DetalleProducto.precioVenta, StringFormat='PEN {0:0.00}'}"
+                                    TextColor="Black" />
+                                <Label
+                                    FontSize="12"
+                                    Text="ANTES S/274.00"
+                                    TextDecorations="Strikethrough" />
+                                <Label
+                                    FontSize="14"
+                                    Text="{Binding DetalleProducto.stockWeb, StringFormat='Stock: {0}'}"
+                                    TextColor="Black" />
+                                <Label
+                                    FontSize="14"
+                                    Text="{Binding DetalleProducto.descripcionProducto}"
+                                    TextColor="Black" />
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="14" Text="{Binding CalificacionTotal, StringFormat='{0:0.0}'}" />
+                                    <rating:SfRating
+                                        x:Name="ratingTotal"
+                                        ItemSize="12"
+                                        Precision="Half"
+                                        VerticalOptions="Center"
+                                        Value="{Binding CalificacionTotal}" />
+                                    <Label FontSize="14" Text="  31 vendidos" />
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Margin="0,4,0,0" Padding="15">
+                        <StackLayout Spacing="0">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Text="Descripción del Producto"
+                                TextColor="Black" />
+                            <StackLayout Margin="0,6,0,0" BindableLayout.ItemsSource="{Binding DetalleProducto.listaCaracteristicas}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame
+                                            Padding="10,8"
+                                            BackgroundColor="WhiteSmoke"
+                                            CornerRadius="0"
+                                            HasShadow="False">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label Text="{Binding nombre}" />
+                                                <Label
+                                                    Grid.Column="1"
+                                                    Text="{Binding valor}"
+                                                    TextColor="Black" />
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+                    <Frame Margin="0,4,0,0" Padding="15">
+                        <StackLayout Spacing="0">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Text="{Binding ResenaTotal, StringFormat='Valoraciones ({0})'}"
+                                TextColor="Black" />
+                            <BoxView
+                                Margin="0,4"
+                                BackgroundColor="WhiteSmoke"
+                                HeightRequest="1"
+                                HorizontalOptions="FillAndExpand" />
+                            <StackLayout
+                                Grid.Row="3"
+                                Margin="10"
+                                BindableLayout.ItemsSource="{Binding ResenasList}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label
+                                                    FontSize="12"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Text="{Binding nombreC}" />
+                                                <Label
+                                                    FontSize="12"
+                                                    HorizontalOptions="End"
+                                                    Text="{Binding fechaRegistroFormat}" />
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <rating:SfRating
+                                                    x:Name="rating"
+                                                    ItemSize="12"
+                                                    Precision="Exact"
+                                                    VerticalOptions="Center"
+                                                    Value="{Binding calificacion}" />
+                                                <Label FontSize="12" Text="-" />
+                                                <Label FontSize="14" Text="{Binding calificacion}" />
+                                            </StackLayout>
+
+                                            <Label
+                                                FontSize="14"
+                                                Text="{Binding descripcion}"
+                                                TextColor="Black" />
+                                            <BoxView
+                                                Margin="0,4"
+                                                BackgroundColor="WhiteSmoke"
+                                                HeightRequest="1"
+                                                HorizontalOptions="FillAndExpand" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="12"
+                                IsVisible="{Binding VerMasValoraciones}"
+                                Text="Ver Todas Las Valoraciones"
+                                TextColor="Blue">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GoToValoracionesViewCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <BoxView
+                                Margin="0,4"
+                                BackgroundColor="WhiteSmoke"
+                                HeightRequest="1"
+                                HorizontalOptions="FillAndExpand" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame Margin="0,4,0,0" Padding="15" IsVisible="{Binding Validacion}">
+                        <StackLayout>
+                            <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal">
+                                <rating:SfRating
+                                    x:Name="rating"
+                                    ItemSize="12"
+                                    Precision="Standard"
+                                    VerticalOptions="Center"
+                                    Value="{Binding CalificacionRegistro}" />
+                                <Label FontSize="12" Text="-" />
+                                <Label FontSize="14" Text="{Binding CalificacionRegistro}" />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal">
+                                <Entry
+                                    FontSize="14"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="{Binding DescripcionRegistro}"
+                                    TextColor="Black" />
+                                <Label
+                                    FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                    FontSize="10"
+                                    HorizontalOptions="End"
+                                    Text="share"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RegistrarResenaCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                            <BoxView
+                                Margin="0,4"
+                                BackgroundColor="WhiteSmoke"
+                                HeightRequest="1"
+                                HorizontalOptions="FillAndExpand" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="0"
+                    Padding="20"
+                    BackgroundColor="#5cb85c"
+                    Command="{Binding agregarCarritoCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding IsStock}"
+                    Text="AGREGAR AL CARRITO"
+                    TextColor="White" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

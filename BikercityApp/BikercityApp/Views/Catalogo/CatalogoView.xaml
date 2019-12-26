@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.Catalogo.CatalogoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:bottomTab="clr-namespace:BikercityApp.Views.Base;assembly=BikercityApp"
+    xmlns:controls="clr-namespace:BikercityApp.Controls;assembly=BikercityApp"
+    xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+    xmlns:templates="clr-namespace:BikercityApp.Views.Templates;assembly=BikercityApp"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="#f2f2f2"
+                Spacing="0">
+                <Frame
+                    Padding="15,10"
+                    BackgroundColor="#2196F3"
+                    CornerRadius="0"
+                    HasShadow="True"
+                    VerticalOptions="StartAndExpand">
+                    <Frame Padding="20,3" CornerRadius="55">
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                FontSize="15"
+                                HorizontalOptions="Center"
+                                Text="search"
+                                TextColor="{Binding HomeColor}"
+                                VerticalOptions="Center" />
+                            <controls:CustomRoundedEntry
+                                BackgroundColor="White"
+                                BorderColor="Transparent"
+                                BorderWidth="0"
+                                CornerRadius="0"
+                                FontSize="11"
+                                HeightRequest="34"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Buscar"
+                                PlaceholderColor="LightBlue"
+                                Text="{Binding BuscadorList}"
+                                TextColor="#009fda"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </Frame>
+                </Frame>
+                <flv:FlowListView
+                    Margin="5,0"
+                    BackgroundColor="#f2f2f2"
+                    FlowColumnCount="2"
+                    FlowItemTappedCommand="{Binding GoToDetalleViewCommand}"
+                    FlowItemsSource="{Binding ProductoList}"
+                    HasUnevenRows="True"
+                    HorizontalOptions="FillAndExpand"
+                    RowHeight="300"
+                    SeparatorVisibility="Default">
+                    <flv:FlowListView.Header>
+                        <StackLayout BackgroundColor="#f2f2f2" Spacing="0">
+                            <Frame
+                                Margin="5,10,5,5"
+                                Padding="0"
+                                CornerRadius="10"
+                                HasShadow="True">
+                                <controls:GradientLayout BackgroundColor="White" ColorsList="#0070b3,#128ad2,#33a9f0">
+                                    <ScrollView
+                                        HeightRequest="85"
+                                        HorizontalOptions="Fill"
+                                        Orientation="Horizontal">
+                                        <StackLayout
+                                            x:Name="ListCategories"
+                                            BindableLayout.ItemsSource="{Binding TipoProductoList}"
+                                            Orientation="Horizontal"
+                                            VerticalOptions="Center">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout Margin="15,5" Orientation="Vertical">
+                                                        <StackLayout.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Path=BindingContext. OrdernarTipoProductoCommand, Source={x:Reference Name=ListCategories}}" CommandParameter="{Binding .}" />
+                                                        </StackLayout.GestureRecognizers>
+                                                        <Label
+                                                            FontFamily="Font Awesome 5 Brands-Regular-400.otf#Font Awesome 5 Brands Regular"
+                                                            FontSize="25"
+                                                            HorizontalOptions="Center"
+                                                            Text="gg-circle"
+                                                            TextColor="White"
+                                                            VerticalOptions="Center" />
+                                                        <Label
+                                                            FontSize="Micro"
+                                                            HorizontalOptions="Center"
+                                                            Text="{Binding descripcion}"
+                                                            TextColor="White" />
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+                                    </ScrollView>
+                                    <FlexLayout
+                                        Grid.Row="1"
+                                        Margin="0,5"
+                                        Direction="Row"
+                                        HorizontalOptions="FillAndExpand"
+                                        JustifyContent="SpaceEvenly"
+                                        VerticalOptions="StartAndExpand">
+                                        <StackLayout Orientation="Vertical">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding OrdenarTodoCommand}" />
+                                            </StackLayout.GestureRecognizers>
+                                            <Label
+                                                FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                                FontSize="22"
+                                                HorizontalOptions="Center"
+                                                Text="list-ul"
+                                                TextColor="White"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                FontSize="Micro"
+                                                HorizontalOptions="Center"
+                                                Text="Todos"
+                                                TextColor="White" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding OrdernarMenorMayorCommand}" />
+                                            </StackLayout.GestureRecognizers>
+                                            <Label
+                                                FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                                FontSize="22"
+                                                HorizontalOptions="Center"
+                                                Text="sort-amount-up"
+                                                TextColor="White"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                FontSize="Micro"
+                                                HorizontalOptions="Center"
+                                                Text="Precio"
+                                                TextColor="White" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding OrdernarMayorMenorCommand}" />
+                                            </StackLayout.GestureRecognizers>
+                                            <Label
+                                                FontFamily="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                                FontSize="22"
+                                                HorizontalOptions="Center"
+                                                Text="sort-amount-down"
+                                                TextColor="White"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                FontSize="Micro"
+                                                HorizontalOptions="Center"
+                                                Text="Precio"
+                                                TextColor="White" />
+                                        </StackLayout>
+                                    </FlexLayout>
+                                </controls:GradientLayout>
+                            </Frame>
+                        </StackLayout>
+                    </flv:FlowListView.Header>
+                    <flv:FlowListView.FlowColumnTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Margin="4"
+                                Padding="0"
+                                BackgroundColor="White"
+                                CornerRadius="8"
+                                HasShadow="False"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="StartAndExpand">
+                                <Grid
+                                    Padding="0,0,0,4"
+                                    ColumnSpacing="0"
+                                    HeightRequest="235">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Image
+                                        Aspect="Fill"
+                                        HorizontalOptions="FillAndExpand"
+                                        Source="{Binding foto}"
+                                        VerticalOptions="FillAndExpand" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Margin="6,0,6,0"
+                                        FontSize="12"
+                                        HorizontalOptions="Start"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="2"
+                                        Text="{Binding titulo}"
+                                        TextColor="#777777"
+                                        VerticalOptions="End" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Margin="6,0,6,0"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        HeightRequest="20"
+                                        HorizontalOptions="Start"
+                                        Text="{Binding precioVenta, StringFormat='S/ {0:0.00}'}"
+                                        TextColor="Black"
+                                        VerticalOptions="End" />
+                                    <Frame
+                                        Grid.Row="3"
+                                        Margin="6,0,6,0"
+                                        Padding="14,4"
+                                        BackgroundColor="Red"
+                                        CornerRadius="5"
+                                        HasShadow="False"
+                                        HorizontalOptions="Center"
+                                        IsVisible="{Binding boolEtiqueta}"
+                                        TranslationY="12">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="13"
+                                            HeightRequest="20"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding estadoEtiqueta}"
+                                            TextColor="White"
+                                            VerticalOptions="End" />
+                                    </Frame>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </flv:FlowListView.FlowColumnTemplate>
+                </flv:FlowListView>
+                <bottomTab:BottomTabTemplate />
+            </StackLayout>
+            <templates:BusyIndicatorTemplate IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BikercityApp.Views.Ordenes.HistorialServicioView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModelBase="clr-namespace:BikercityApp.ViewModels.Base;assembly=BikercityApp"
+    Title="Historial de Servicio"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    NavigationPage.HasNavigationBar="True">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding GoToCalendarCommand}"
+            Icon="ic_event"
+            Text="Eventos" />
+        <ToolbarItem
+            Command="{Binding GoToMensajeCommand}"
+            Icon="ic_message"
+            Text="Mensajes" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout
+                    x:Name="SolicitudServicio"
+                    BindableLayout.ItemsSource="{Binding SolicitudServicioList}"
+                    Orientation="Vertical"
+                    VerticalOptions="Center">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame
+                                    Margin="0"
+                                    Padding="6"
+                                    BackgroundColor="White"
+                                    CornerRadius="0"
+                                    HasShadow="True">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.GoToHistorialServicioDetalleViewCommand, Source={x:Reference SolicitudServicio}}" CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
+                                    <FlexLayout
+                                        Margin="15,5"
+                                        Direction="Row"
+                                        FlowDirection="MatchParent"
+                                        JustifyContent="SpaceEvenly">
+
+                                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Vertical">
+                                            <Label
+                                                FontSize="Micro"
+                                                Text="Num Orden:"
+                                                TextColor="DimGray" />
+                                            <Label
+                                                FontSize="Micro"
+                                                Text="{Binding idSolicitudServicio}"
+                                                TextColor="Black" />
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="End" Orientation="Vertical">
+                                            <Label
+                                                FontSize="Micro"
+                                                Text="Registrado el"
+                                                TextColor="DimGray" />
+                                            <Label
+                                                FontSize="Micro"
+                                                Text="{Binding fechaRegistro}"
+                                                TextColor="Black" />
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Vertical">
+                                            <Label
+                                                FontSize="Micro"
+                                                Text="Estado"
+                                                TextColor="DimGray" />
+                                            <Label
+                                                FontSize="Micro"
+                                                Text="{Binding descripcion}"
+                                                TextColor="Black" />
+                                        </StackLayout>
+                                    </FlexLayout>
+                                </Frame>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
